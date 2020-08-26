@@ -1,0 +1,29 @@
+.App {
+  text-align: center;
+}
+.main {
+  color: black;
+  margin: 50px 0px 50px;
+  padding-top: 85px;
+}
+.main-container {
+  padding: 50px 0 0;
+}
+.successMsg {
+  color: blue;
+}
+.intermediate {
+  outline: '2px auto rgba(19,124,189,.6)';
+}
+.checkBoxLabel {
+  font-size: 1.5em !important;
+}
+.vueeduDarkBlue {
+  background-color: #03045e;
+}
+.vueeduDarkBlue2 {
+  background-color: #0077b6;
+}
+.vueeduMiddleBlue {
+  background-color: #00b4d8;
+}
