@@ -9,7 +9,7 @@ export default class Sidenav extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
-
+            displayComponent: ''
         }
     }
     componentDidMount() {
@@ -22,7 +22,7 @@ export default class Sidenav extends React.Component {
                 {this.props.component === "Idea" 
                 ? <IdeaSideNav /> : ''}
                 {this.props.component === "Planner" 
-                ? <PlannerSideNav /> : ''}
+                ? <PlannerSideNav currentComponent={this.props.setComponent}/> : ''}
                 {this.props.component === "Settings" 
                 ? <SettingsSideNav /> : ''}
             </div>

@@ -17,7 +17,8 @@ class App extends React.Component {
     super();
       this.state = {
         isLoggedIn: false,
-        userDetails: [], 
+        userDetails: [],
+        overlay: false  
       }
   }
   componentDidMount() {
@@ -36,10 +37,9 @@ class App extends React.Component {
             })
     else {}
   }
-  
   render() {
     return (
-      <div className="App">
+      <div className="App" id="App">
         <Router> 
           <Toolbar  userDetails={this.state.userDetails}/>
           <Hero />

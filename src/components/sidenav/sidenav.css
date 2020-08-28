@@ -3,7 +3,8 @@
 }
 .side-nav ul {
     padding: 0px;
-}
-.side-nav ul  {
     list-style-type: none;
+}
+.side-nav ul li a {
+    cursor: pointer;
 }
