@@ -8,3 +8,8 @@
 .side-nav ul li a {
     cursor: pointer;
 }
+@media (max-width: 768px) {
+    .side-nav {
+        display: none;
+    }
+}

@@ -57,3 +57,17 @@
 .planner-inner {
     padding: 10px;
 }
+.planner-text-box {
+    background-color: 	#DCDCDC;
+    width: 50%;
+    line-height: 1.5;
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-radius: 20px;
+    border: none;
+    padding-left: 10px;
+}
+.planner-text-box:focus {
+    outline: none;
+}

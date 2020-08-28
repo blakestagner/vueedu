@@ -14,7 +14,6 @@ export default class Home extends React.Component {
     }
     setComponent(e) {
         this.setState({openComponent: e.target.name})
-        console.log(this.state)
     }
     render() {
         return (
@@ -27,8 +26,13 @@ export default class Home extends React.Component {
                     </div>
                     <div className="col-xs-12 col-sm-8 col-md-9 col-lg-9">
                         {this.state.openComponent === 'my planner' ? 
-                            <MyPlans 
-                            userDetails={this.props.userDetails} /> : ''}
+                            <div>
+                                <Planner
+                                    userDetails={this.props.userDetails}/>
+                                <MyPlans 
+                                    userDetails={this.props.userDetails} />
+                            </div> 
+                        : ''}
                         {this.state.openComponent === 'add to planner' ? 
                             <Planner 
                                 userDetails={this.props.userDetails}/>: ''}

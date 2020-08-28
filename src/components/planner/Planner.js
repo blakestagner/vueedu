@@ -59,7 +59,7 @@ export default class Planner extends React.Component {
     }
     render() {
         return (
-            <div className="col-lg-9 col-md-9 col-sm-12">
+            <div >
                 {this.state.open ? 
                 <div className="planner-open">
                     <div className="planner-inner">
@@ -116,10 +116,14 @@ export default class Planner extends React.Component {
                                 </Grid>
                                 {this.state.checked ? 
                                 <Grid item >
-                                    <div className="row align-left space-under">
-                                        <PlannerTime
-                                            handleChange={this.handleInputChange}/>
-                                    </div>
+                                    <TextField
+                                        id="datetime-local"
+                                        label="reminder time"
+                                        name="reminder_time"
+                                        type="datetime-local"
+                                        defaultValue="2020-09-24T10:30"
+                                        onChange={this.handleInputChange}
+                                    />
                                 </Grid>
                                 : ''
                                 }
@@ -145,34 +149,11 @@ export default class Planner extends React.Component {
                             this.props.userDetails.lname
                         }
                     />
-                    <button 
-                        onClick={this.togglePlanner}
-                        className="text-box-button"
-                        >
-                        <p>plan something</p>
-                    </button>
+                    <input 
+                    onClick={this.togglePlanner}
+                    className="planner-text-box"
+                    defaultValue="plan somthing"/>
                 </div>
-  
-            </div>
-        )
-    }
-}
-class PlannerTime extends React.Component {
-    render() {
-        return (
-            <div>
-                <Grid container item xs={12} spacing={5}>
-                    <Grid item >
-                    <TextField
-                        id="datetime-local"
-                        label="Next appointment"
-                        name="reminder_time"
-                        type="datetime-local"
-                        defaultValue="2017-05-24T10:30"
-                        onChange={this.props.handleChange}
-                    /> 
-                    </Grid>
-                </Grid>
             </div>
         )
     }

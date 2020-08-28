@@ -45,6 +45,7 @@ class App extends React.Component {
           <Hero />
           <Switch>
             <React.Fragment>
+            
               <div  className="main" id="main">
                 <Route  exact 
                   path="/" 

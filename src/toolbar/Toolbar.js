@@ -34,21 +34,14 @@ export default class Toolbar extends React.Component {
             const child = document.querySelector('#mobileNavBarList').childNodes
             if(y.classList.value === 'mmOpen') {
                 x.removeEventListener("click", this.mobileMenuToggle)
-                for (let i = 0; i < child.length; i++) {
-                    child[i].removeEventListener("click", this.closeMobileMenu)
-                }
             } else {
                 x.addEventListener('click', this.mobileMenuToggle)
-                for (let i = 0; i < child.length; i++) {
-                    child[i].addEventListener("click", this.closeMobileMenu)
-                }
             }
         }
         closeMobileMenu() {
             document.querySelector('#mobileMenu').classList = 'mmClosed'
         }
     render() {
-
         return (
         <div >
             {(isAuthenticated() ) ? 
@@ -148,10 +141,9 @@ class LoggedInMenu extends React.Component {
     }
 }
 class MobileMenu extends React.Component {
-
-    logOut(){
-        localStorage.removeItem('x-access-token');
-        }
+logOut() {
+    localStorage.removeItem('x-access-token');
+}
     render() {
         return (
             <div id="mobileMenu" className="mmClosed">
@@ -161,7 +153,13 @@ class MobileMenu extends React.Component {
                                 <Link to="/home">home</Link>
                             </li> 
                             : ''
-                        }
+                    }
+                    {( isAuthenticated() ) ?
+                        <li>
+                            <Link to="/settings">settings</Link>
+                        </li> 
+                        : ''
+                    }
                     {( isAuthenticated() ) ? (   
                         <li onClick={this.logOut}>
                             <a href="/">Log out</a> 

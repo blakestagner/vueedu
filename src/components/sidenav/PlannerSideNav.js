@@ -21,8 +21,6 @@ export default class PlannerSideNav extends React.Component {
                         add a plan to planner
                     </a>
                 </li>
-                <li>calendar view</li>
-                <li>reusable plans</li>
             </ul>
         </div>
         )
