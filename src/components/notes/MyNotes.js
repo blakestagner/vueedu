@@ -2,7 +2,7 @@ import React from 'react'
 import { getNotes } from '../../autho/Repository'
 import ToggleNotesReminder from '../inputs/ToggleNotesReminder'
 import {  TextField } from '@material-ui/core';
-import Grid from '@material-ui/core/grid'
+import { Grid } from '@material-ui/core'
 import add from '../../img/icons/add.svg';
 import remove from '../../img/icons/remove.svg';
 import planner from '../planner/planner.css'
