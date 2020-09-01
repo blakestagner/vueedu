@@ -1,32 +1,24 @@
 import React from 'react';
 import './register.css';
 import { BrowserRouter as Redirect } from 'react-router-dom';
-import { login } from '../autho/Repository'
+import { login, getUserInfo } from '../autho/Repository'
 import { isAuthenticated } from '../autho/Repository'
 import {TextField } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
 
 export default class UserLogin extends React.Component {
   constructor(props) {
     super(props);
       this.state = {
-        toHome: false
+        
       }
+      this.handleSuccessfulAuth = this.handleSuccessfulAuth.bind(this)
     }
-componentDidMount() {
-    if( isAuthenticated() )
-    this.props.history.push("/")
-    this.setState({toHome: true})
-    
-}
-handleSuccessfulAuth() {
+handleSuccessfulAuth(data) {
+  this.props.handleLogin(data)
   window.scrollTo(0,0)
-  window.location.reload(false)
+  this.props.history.push("/notes")
 }
   render() {
-    if (this.state.toHom === true) {
-      return <Redirect to='/home' />
-    } else {}
     return (
         <div className="container">
             <div className="box-controller">
@@ -59,7 +51,13 @@ class LoginBox extends React.Component {
            e.preventDefault();
            login(this.state)
            .then(res => 
-             this.props.handleSuccessfulAuth()
+              getUserInfo()
+              .then(res => {
+                  this.props.handleSuccessfulAuth(res)
+              })
+              .catch(err => {
+                  console.log(err);
+              })
            )
            .catch(err => 
               err)

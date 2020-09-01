@@ -1,5 +1,6 @@
 import React from 'react';
 import { getPlanner } from '../../autho/Repository'
+import Planner from '../../components/planner/Planner'
 
 export default class MyPlans extends React.Component {
     constructor(props) {
@@ -18,16 +19,10 @@ export default class MyPlans extends React.Component {
         ))
     }
     render() {
-        const myPlanner = this.state.myPlanner;
         return (
             <div>
                 <h1>My Plans</h1>
-                    {myPlanner.map((plans) => (
-                        <div key={plans.id}>
-                            {plans.title}
-                            {plans.content}
-                        </div>
-                    ))}
+                <Planner />
             </div>
         )
     }

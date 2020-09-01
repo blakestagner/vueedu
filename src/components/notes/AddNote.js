@@ -1,5 +1,4 @@
-import React from 'react'
-import planner from './planner.css';
+import React from 'react';
 import {  TextField } from '@material-ui/core';
 import Grid from '@material-ui/core/Grid';
 import Radio from '@material-ui/core/Radio';
@@ -8,13 +7,14 @@ import FormControlLabel from '@material-ui/core/FormControlLabel';
 import FormControl from '@material-ui/core/FormControl';
 import FormLabel from '@material-ui/core/FormLabel';
 import Toggle from '../inputs/Toggle'
-import { postPlanner } from '../../autho/Repository'
+import { postNote } from '../../autho/Repository'
 import Button from '@material-ui/core/Button';
 import Avatar from '../loggedinUser/Avatar'
 import close from '../../img/icons/close.png'
 
 
-export default class AddToPlanner extends React.Component {
+
+export default class AddNote extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -27,7 +27,7 @@ export default class AddToPlanner extends React.Component {
             open: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
-        this.togglePlanner = this.togglePlanner.bind(this);
+        this.toggleNoteOverlay = this.toggleNoteOverlay.bind(this);
     }
     handleInputChange(event) {
         this.setState({[event.target.name]: event.target.value})
@@ -35,7 +35,7 @@ export default class AddToPlanner extends React.Component {
     onChangeReminder = () => {
         this.setState({checked: this.state.checked ? false : true})
     }
-    togglePlanner() {
+    toggleNoteOverlay() {
         this.setState({open: this.state.open ? false : true})
         var app = document.getElementById('overlay')
         if(app.classList == "") {
@@ -44,12 +44,18 @@ export default class AddToPlanner extends React.Component {
             app.classList = ""
         }
     }
+    toggleOverlay2() {
+        this.setState({open: this.state.open ? false : true})
+    }
     submitPlan(e) {
         e.preventDefault();
-        postPlanner(this.state)
+        postNote(this.state)
         .then(res => 
-            this.togglePlanner()
+            this.toggleNoteOverlay()
         ) 
+        .then(() => {
+            this.props.updateState()
+        })
         .catch(err => 
             alert(err)
         )
@@ -61,7 +67,7 @@ export default class AddToPlanner extends React.Component {
                 <div className="planner-open">
                     <div className="planner-inner">
                         <img
-                            onClick={this.togglePlanner} 
+                            onClick={this.toggleNoteOverlay}
                             src={close} 
                             className="close-icon" 
                             />
@@ -132,7 +138,7 @@ export default class AddToPlanner extends React.Component {
                             size="medium"
                             onClick={ this.submitPlan.bind(this)}
                             >
-                            update planner
+                            add note
                         </Button>
                     </div> 
                 </div>
@@ -147,9 +153,9 @@ export default class AddToPlanner extends React.Component {
                         }
                     />
                     <input 
-                    onClick={this.togglePlanner}
+                    onClick={this.toggleNoteOverlay}
                     className="planner-text-box"
-                    defaultValue="plan somthing"/>
+                    defaultValue="add a note..."/>
                 </div>
             </div>
         )

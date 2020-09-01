@@ -1,8 +1,11 @@
 import React from 'react';
+import MyPlans from '../components/planner/MyPlans';
+import PlannerSideNav from '../components/sidenav/PlannerSideNav';
+import AddToPlanner from '../components/planner/AddToPlanner';
+import PlannerDateView from '../components/planner/PlannerDateView';
+import home from './home.css';
+import PlannerDate from '../components/planner/PlannerDate'
 import Planner from '../components/planner/Planner'
-import MyPlans from '../components/planner/MyPlans'
-import PlannerSideNav from '../components/sidenav/PlannerSideNav'
-
 
 export default class Home extends React.Component {
     constructor(props) {
@@ -24,19 +27,29 @@ export default class Home extends React.Component {
                             setPlanner={this.setComponent}
                             />
                     </div>
-                    <div className="col-xs-12 col-sm-8 col-md-9 col-lg-9">
+                    <div className="col-xs-12 col-sm-8 col-md-7 col-lg-7">
                         {this.state.openComponent === 'my planner' ? 
-                            <div>
-                                <Planner
-                                    userDetails={this.props.userDetails}/>
-                                <MyPlans 
-                                    userDetails={this.props.userDetails} />
-                            </div> 
-                        : ''}
-                        {this.state.openComponent === 'add to planner' ? 
+                        <div>
+                            <AddToPlanner
+                                userDetails={this.props.userDetails}/>
                             <Planner 
+                                date={'1999'}
+                                userDetails={this.props.userDetails} />
+                        </div> 
+                        : ''}
+                        {this.state.openComponent === 'planner date view' ? 
+                            <PlannerDateView
+                                userDetails={this.props.userDetails}/>: ''}
+                        {this.state.openComponent === 'planner date' ? 
+                            <PlannerDate
+                                
                                 userDetails={this.props.userDetails}/>: ''}
                     </div>
+                    <div className="col-xs-12 col-sm-8 col-md-2 col-lg-2">
+                        <div className="right-nav">
+                            RIGHT NAV
+                        </div>
+                    </div >
                 </div>
             </div>
         )

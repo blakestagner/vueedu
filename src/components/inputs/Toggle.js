@@ -17,7 +17,7 @@ export default function Toggle(props) {
             control={
               <Switch
                 checked={state.checkedB}
-                onChange={handleChange, props.handleChange}
+                onChange={handleChange}
                 color="primary"
                 value={state.checked}
               />

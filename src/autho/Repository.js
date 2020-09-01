@@ -65,3 +65,52 @@ export function getPlanner() {
     .then(res => res.data)
     .catch(err => Promise.reject('Request Not Authenticated!'));
     }
+export function updateReminder(data) {
+    return axios.post(`${BASE_URL}/api/plannerReminder`, {
+        'x-access-token': localStorage.getItem('x-access-token'),
+        'reminder': data.checked,
+        'id': data.toggleid
+    })
+    .then(res => res.data)
+    .catch(err => Promise.reject('Request Not Authenticated!'));
+    }
+//Notes
+export function postNote(data) {
+    return axios.post(`${BASE_URL}/post/Notes`, {
+            'x-access-token': localStorage.getItem('x-access-token'),
+            'title': data.title,
+            'content': data.content,
+            'hashtag': data.hashtag,
+            'reminder': data.checked,
+            'reminder_time': data.reminder_time,
+            'type': data.type,} 
+        )
+        .then(res => res.data)
+        .catch(err => Promise.reject('Request Not Authenticated!'));
+    }
+export function getNotes() {
+    return axios.get(`${BASE_URL}/api/getNotes`, {
+        params: { 'x-access-token': localStorage.getItem('x-access-token')} 
+    })
+    .then(res => res.data)
+    .catch(err => Promise.reject('Request Not Authenticated!'));
+    }
+export function updateNotesReminder(data) {
+    return axios.post(`${BASE_URL}/api/notesReminder`, {
+        'x-access-token': localStorage.getItem('x-access-token'),
+        'reminder': data.checked,
+        'id': data.toggleid
+    })
+    .then(res => res.data)
+    .catch(err => Promise.reject('Request Not Authenticated!'));
+    }
+export function updateNotesReminder2(data) {
+    return axios.post(`${BASE_URL}/api/notesReminder`, {
+        'x-access-token': localStorage.getItem('x-access-token'),
+        'reminder': data.reminderStatus,
+        'id': data.notificationid
+    })
+    .then(res => res.data)
+    .catch(err => Promise.reject('Request Not Authenticated!'));
+    }
+    

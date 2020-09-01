@@ -19,33 +19,36 @@ export default class Toolbar extends React.Component {
     logOut(){
         localStorage.removeItem('x-access-token');
         }
-        mobileMenuToggle() {
-            const mobileNav = document.querySelector('#mobileMenu')
-            const contentElement = document.querySelector('#root')
-            if (mobileNav.classList == 'mmClosed') {
-                this.handleClickBeyondSidebar(contentElement, mobileNav)
-                mobileNav.classList = 'mmOpen'
-            } else { 
-                this.handleClickBeyondSidebar(contentElement, mobileNav) 
-                mobileNav.classList = 'mmClosed'
-            }
+    mobileMenuToggle() {
+        const mobileNav = document.querySelector('#mobileMenu')
+        const contentElement = document.querySelector('#root')
+        if (mobileNav.classList == 'mmClosed') {
+            this.handleClickBeyondSidebar(contentElement, mobileNav)
+            mobileNav.classList = 'mmOpen'
+        } else { 
+            this.handleClickBeyondSidebar(contentElement, mobileNav) 
+            mobileNav.classList = 'mmClosed'
         }
-        handleClickBeyondSidebar(x, y) {
-            const child = document.querySelector('#mobileNavBarList').childNodes
-            if(y.classList.value === 'mmOpen') {
-                x.removeEventListener("click", this.mobileMenuToggle)
-            } else {
-                x.addEventListener('click', this.mobileMenuToggle)
-            }
+    }
+    handleClickBeyondSidebar(x, y) {
+        const child = document.querySelector('#mobileNavBarList').childNodes
+        if(y.classList.value === 'mmOpen') {
+            x.removeEventListener("click", this.mobileMenuToggle)
+        } else {
+            x.addEventListener('click', this.mobileMenuToggle)
         }
-        closeMobileMenu() {
-            document.querySelector('#mobileMenu').classList = 'mmClosed'
-        }
+    }
+    closeMobileMenu() {
+        document.querySelector('#mobileMenu').classList = 'mmClosed'
+    }
     render() {
+        const isLoggedIn = this.props.isLoggedIn
         return (
-        <div >
+        <div >{isLoggedIn}
             {(isAuthenticated() ) ? 
-                <LoggedInMenu userDetails={this.props.userDetails} onClick={this.mobileMenuToggle}/>
+                <LoggedInMenu 
+                    userDetails={this.props.userDetails} 
+                    onClick={this.mobileMenuToggle}/>
                 :
                 <LandingMenu onClick={this.mobileMenuToggle}/>
             }
@@ -61,17 +64,6 @@ class LandingMenu extends React.Component {
         }
     }
     render() {
-        window.onscroll = () => {
-            const nav = document.querySelector('#mainNav');
-            if(window.scrollY <= 10) {
-                nav.className = 'navBar'
-                this.setState({menuIcon: menuWhite})
-            }
-            else {
-                nav.className = 'navBar scrollBar';
-                this.setState({menuIcon: menuBlack})
-                }
-            };  
         return (
             <div className="navBar" id="mainNav">
                 <MobileMenu onClick={this.mobileMenuToggle}/>
@@ -121,9 +113,9 @@ class LoggedInMenu extends React.Component {
                     <div className='navBarTitle'>
                         <h1><Link to="/">vueedu</Link></h1>
                     </div>
-                    <ul id="mainMenuList">
+                    <ul id="mainMenuList"> 
                         <li className="menuList">
-                            <Link to="/home">home</Link>
+                            <Link to="/notes">notes</Link>
                         </li> 
                         <li className="menuList">
                             <Link to="/settings">settings</Link>
@@ -149,10 +141,10 @@ logOut() {
             <div id="mobileMenu" className="mmClosed">
                 <ul className="mobileNavBarList" id="mobileNavBarList" onClick={this.props.onClick}>
                     {( isAuthenticated() ) ?
-                            <li>
-                                <Link to="/home">home</Link>
-                            </li> 
-                            : ''
+                        <li>
+                            <Link to="/notes">notes</Link>
+                        </li> 
+                        : ''
                     }
                     {( isAuthenticated() ) ?
                         <li>

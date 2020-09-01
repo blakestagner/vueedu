@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as  Router, Switch, Route, Redirect } from 'react-router-dom';
+import { BrowserRouter as  Router, Switch, Route} from 'react-router-dom';
 import './App.css';
 import './grid/grid.css';
 import Toolbar from './toolbar/Toolbar';
@@ -10,6 +10,7 @@ import Home from './home/Home';
 import Settings from './components/profile/Settings';
 import { isAuthenticated, getUserInfo } from './autho/Repository';
 import UserLogin from './register/UserLogin';
+import Notes from './components/notes/Notes'
 
 
 class App extends React.Component {
@@ -20,17 +21,21 @@ class App extends React.Component {
         userDetails: [],
         overlay: false  
       }
+      this.handleLogin = this.handleLogin.bind(this)
   }
   componentDidMount() {
     this.checkLoggedinStatus();
   }
-
+  handleLogin(data) {
+    this.setState({isLoggedIn: true, userDetails: data})
+  }
   checkLoggedinStatus() {
     if( isAuthenticated() )
     getUserInfo()
         .then((userDetails) => {
-            this.setState({isLoggedIn: true, userDetails: userDetails})
-            
+            this.setState({
+              isLoggedIn: true, 
+              userDetails: userDetails})
         })
         .catch(err => {
             console.log(err);
@@ -41,7 +46,9 @@ class App extends React.Component {
     return (
       <div className="App" id="App">
         <Router> 
-          <Toolbar  userDetails={this.state.userDetails}/>
+          <Toolbar  
+            loginStatus={this.state.isLoggedIn}
+            userDetails={this.state.userDetails}/>
           <Hero />
           <Switch>
             <React.Fragment>
@@ -52,7 +59,7 @@ class App extends React.Component {
                   render={props => (
                     <Landing {...props} 
                     isLoggedIn={this.state.isLoggedIn}
-                    handleLogin={this.handleLogin}/>
+                    />
                   )} 
                   />
                 <Route
@@ -60,6 +67,16 @@ class App extends React.Component {
                   path="/home" 
                   render={props => (
                     <Home 
+                      {...props}
+                      userDetails={this.state.userDetails} 
+                      isLoggedIn={this.state.isLoggedIn}/>
+                  )} 
+                  />
+                  <Route
+                  exact 
+                  path="/notes" 
+                  render={props => (
+                    <Notes
                       {...props}
                       userDetails={this.state.userDetails} 
                       isLoggedIn={this.state.isLoggedIn}/>
@@ -80,9 +97,9 @@ class App extends React.Component {
                   path="/login" 
                   render={props => (
                     <UserLogin 
-                      {...props}
-                      userDetails={this.state.userDetails} 
-                      isLoggedIn={this.state.isLoggedIn}/>
+                      {...props} 
+                      isLoggedIn={this.state.isLoggedIn}
+                      handleLogin={this.handleLogin}/>
                   )} 
                   />
               </div>

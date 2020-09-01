@@ -1,31 +1,31 @@
 import React from 'react';
 import sidenav from './sidenav.css';
 
-export default class PlannerSideNav extends React.Component {
+export default class NotesSideNav extends React.Component {
     render() {
         return (
         <div className="side-nav">
-            <h2>Planner</h2>
+            <h2>Notes</h2>
             <ul>
                 <li>
                     <a 
-                        name="my planner"
+                        name="my notes"
                         onClick={this.props.setPlanner}>
-                        my planner
+                        my notes
                     </a>
                 </li>
                 <li>
                     <a 
-                        name="planner date" 
+                        name="reminders" 
                         onClick={this.props.setPlanner}>
-                        planner date
+                        reminders
                     </a>
                 </li>
                 <li>
                     <a 
-                        name="planner date view" 
+                        name="categories" 
                         onClick={this.props.setPlanner}>
-                        planner date view
+                        categories
                     </a>
                 </li>
             </ul>
