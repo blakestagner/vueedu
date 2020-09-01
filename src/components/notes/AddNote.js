@@ -1,6 +1,6 @@
 import React from 'react';
 import {  TextField } from '@material-ui/core';
-import Grid from '@material-ui/core/Grid';
+import { Grid } from '@material-ui/core';
 import Radio from '@material-ui/core/Radio';
 import RadioGroup from '@material-ui/core/RadioGroup';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
