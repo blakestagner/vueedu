@@ -1,8 +1,8 @@
-import React from 'react'
-import { getPlanner } from '../../autho/Repository'
-import ToggleReminder from '../inputs/ToggleReminder'
+import React from 'react';
+import { getPlanner } from '../../autho/Repository';
+import ToggleReminder from '../inputs/ToggleReminder';
 import {  TextField } from '@material-ui/core';
-import Grid from '@material-ui/core/grid'
+import { Grid } from '@material-ui/core';
 import add from '../../img/icons/add.svg';
 import remove from '../../img/icons/remove.svg';
 
