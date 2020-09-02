@@ -2,12 +2,11 @@ import React, { useState, useEffect } from 'react';
 import { updateNotesReminder2 } from '../../autho/Repository'
 import reminder from '../../img/icons/reminder.svg'
 import reminderWhite from '../../img/icons/reminder_white.svg'
-import color from '../../img/icons/color.svg'
-import colorWhite from '../../img/icons/color_white.svg'
+import delete_icon from '../../img/icons/delete_icon.svg'
 
-export default function SelectColor(props) {
+
+export default function DeletePost(props) {
   const [state, setState] = useState({
-    noteColor: props.color,
     noteid: props.noteid
   });
   const handleChange = (event) => {
@@ -23,10 +22,9 @@ export default function SelectColor(props) {
       <div>
           <img
             className="color-icon"
-            src={ color }
+            src={delete_icon}
             onClick={handleChange}
-            name="noteColor"
-            noteColor={state.color}
+            name="delete"
           />
         </div>
   );

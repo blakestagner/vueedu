@@ -11,6 +11,8 @@ import reminderWhite from '../../img/icons/reminder_white.svg'
 import reminderSet from '../../img/icons/reminder_set.svg'
 import reminderSetWhite from '../../img/icons/reminder_set_white.svg'
 import ReminderToggle from '../inputs/ReminderToggle'
+import SelectColor from '../inputs/SelectColor'
+import DeletePost from '../inputs/DeletePost'
 
 export default class MyNotes extends React.Component {
     constructor(props) {
@@ -78,12 +80,13 @@ export default class MyNotes extends React.Component {
                                 <div className="notes-content">
                                     <p  className={notes.color === 'yellow' ? 'black' : 'white' }>{notes.content}</p>
                                 </div>
-                                
-                            
-                                
                             </div>
-                            <div
-                                    className="notes-tools">
+                            <div className="notes-tools">
+                                <Grid
+                                    container 
+                                    item 
+                                    spacing={2}
+                                    justify='space-evenly'>
                                     <div className="my-plans-toggle">
                                         <ReminderToggle
                                             notificationid={notes.id}
@@ -92,23 +95,26 @@ export default class MyNotes extends React.Component {
                                             refreshState={this.handleToggle}
                                             alt="reminder"
                                         />
-                                    {notes.reminder === 1 ? 
-                                    <div className="reminder-select">
-                                        <TextField
-                                            id="datetime-local"
-                                            label="reminder time"
-                                            name="reminder_time"
-                                            type="datetime-local"
-                                            defaultValue={notes.reminder == 1 ? `${notes.reminder_time.split('.000Z')[0]}` : '2020-09-24T10:30' }
-                                            onChange={this.handleInputChange}
-                                        /> 
                                     </div>
-                                    : 
-                                    'no reminder set'
-                                    }
-                                    </div>
+                                    <SelectColor />
+                                    <DeletePost />
+                                </Grid>
+                                <div className="reminder-select">
+                                {notes.reminder === 1 ? 
+                                    <TextField
+                                        id="datetime-local"
+                                        label="reminder time"
+                                        name="reminder_time"
+                                        type="datetime-local"
+                                        defaultValue={notes.reminder == 1 ? `${notes.reminder_time.split('.000Z')[0]}` : '2020-09-24T10:30' }
+                                        onChange={this.handleInputChange}
+                                    /> 
+                                : 
+                                <p>no reminder set</p>
+                                }
                                 </div>
                             </div>
+                        </div>
                     </Grid>
                 ))}
                 </Grid>
