@@ -11,6 +11,7 @@ import { postNote } from '../../autho/Repository'
 import Button from '@material-ui/core/Button';
 import Avatar from '../loggedinUser/Avatar'
 import close from '../../img/icons/close.png'
+import ChooseColor from '../inputs/ChooseColor'
 
 
 
@@ -24,16 +25,21 @@ export default class AddNote extends React.Component {
             checked: false,
             reminder_time: '',
             type: '',
+            color: 'yellow',
             open: false
         }
         this.handleInputChange = this.handleInputChange.bind(this);
         this.toggleNoteOverlay = this.toggleNoteOverlay.bind(this);
+        this.handleColorChange = this.handleColorChange.bind(this)
     }
     handleInputChange(event) {
         this.setState({[event.target.name]: event.target.value})
         }
     onChangeReminder = () => {
         this.setState({checked: this.state.checked ? false : true})
+    }
+    handleColorChange(colorValue) {
+        this.setState({color: colorValue})
     }
     toggleNoteOverlay() {
         this.setState({open: this.state.open ? false : true})
@@ -131,6 +137,11 @@ export default class AddNote extends React.Component {
                                 : ''
                                 }
                             </Grid>
+                            <ChooseColor 
+                                name="color"
+                                onChange={this.handleColorChange}
+                                color={this.state.color}
+                            />
                         </div>
                         <Button 
                             variant="contained"

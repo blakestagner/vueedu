@@ -5,7 +5,6 @@ import MyNotes from './MyNotes'
 import { getNotes } from '../../autho/Repository'
 
 
-
 export default class Home extends React.Component {
     constructor(props) {
         super(props) 

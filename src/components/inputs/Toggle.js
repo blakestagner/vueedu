@@ -9,6 +9,7 @@ export default function Toggle(props) {
 
       const handleChange = (event) => {
         setState({ ...state, [event.target.name]: event.target.checked });
+        props.handleChange()
       };
 
       return (
@@ -16,8 +17,9 @@ export default function Toggle(props) {
           <FormControlLabel
             control={
               <Switch
-                checked={state.checkedB}
-                onChange={handleChange}
+                name="checked"
+                checked={state.checked}
+                onClick={handleChange}
                 color="primary"
                 value={state.checked}
               />

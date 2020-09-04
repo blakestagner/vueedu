@@ -174,12 +174,18 @@
 .reminder-select {
     width: fit-content;
     padding-top: 10px;
+    display: flex;
+    margin: auto;
 }
 .reminder-select p {
+    flex: 1 0 auto;
     width: fit-content;
-    margin: 10px 0 0;
-    font-size: 15px;
-    color: #808080;
+    line-height: 1.5;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    color: grey;
 }
 .notes {
     width: 100%;
@@ -216,6 +222,51 @@
 .black {
     color: black;
 }
+/*color select*/
 .color-icon {
     height: 30px;
+}
+.color-select {
+    border-radius: 50%;
+    height: 20px;
+    width: 20px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    margin-right: 10px;
+}
+.color-container {
+    display: flex;
+    border: 2px lightGrey solid;
+    width: fit-content;
+    border-radius: 10px;
+    padding: 5px;
+    align-items: center;
+}
+.selected {
+    height: 25px;
+    width: 25px;
+    box-shadow: 0 2px 2px rgba(0,0,0,0.12), 0 2px 2px rgba(0,0,0,0.24);
+}
+.color-select-icon {
+    height: 30px;
+    width: 30px;
+    border-radius: 50%;
+    padding: 3px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+}
+/*reminder*/
+.reminder-status {
+    color: grey;
+    font-size: 12px;
+    font-stretch: semi-condensed;
+}
+/*Pin icon*/
+.pin-icon {
+    cursor: pointer;
+    background-color: #03045e;
+    border-radius: 50%;
+    height: 30px;
+    width: 30px;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.12), 0 1px 2px rgba(0,0,0,0.24);
+    display: flex;
+    padding: 5px;
 }
