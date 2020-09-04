@@ -83,7 +83,8 @@ export function postNote(data) {
             'hashtag': data.hashtag,
             'reminder': data.checked,
             'reminder_time': data.reminder_time,
-            'type': data.type,} 
+            'type': data.type,
+            'color': data.color} 
         )
         .then(res => res.data)
         .catch(err => Promise.reject('Request Not Authenticated!'));
@@ -113,4 +114,19 @@ export function updateNotesReminder2(data) {
     .then(res => res.data)
     .catch(err => Promise.reject('Request Not Authenticated!'));
     }
-    
+export function deleteNote(data) {
+    return axios.delete(`${BASE_URL}/api/notesDelete`, {
+        data: {'x-access-token': localStorage.getItem('x-access-token'), 'id': data} 
+    })
+    .then(res => res.data)
+    .catch(err => Promise.reject('Request Not Authenticated!'));
+    }
+export function updateNoteColor(x, y) {
+    return axios.post(`${BASE_URL}/api/updateNoteColor`, {
+        'x-access-token': localStorage.getItem('x-access-token'),
+        'color': x,
+        'id': y
+    })
+    .then(res => res.data)
+    .catch(err => Promise.reject('Request Not Authenticated!'));
+    }
