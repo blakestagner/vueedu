@@ -43,6 +43,7 @@ class App extends React.Component {
     else {}
   }
   render() {
+    const isLoggedIn = this.state.isLoggedIn
     return (
       <div className="App" id="App">
         <Router> 
@@ -106,7 +107,8 @@ class App extends React.Component {
             </React.Fragment>
           </Switch>
         </Router>
-        <Footer />
+        {isLoggedIn === true ? '' : <Footer />}
+
       </div>
     );
   }

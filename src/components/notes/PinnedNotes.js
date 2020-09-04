@@ -17,7 +17,7 @@ import colorWhite from '../../img/icons/color_white.svg'
 import color from '../../img/icons/color.svg'
 import reminderCancel from '../../img/icons/reminder_cancel.svg'
 
-export default class MyNotes extends React.Component {
+export default class PinnedNotes extends React.Component {
     constructor(props) {
         super(props)
         this.state = {
@@ -46,6 +46,7 @@ export default class MyNotes extends React.Component {
     }
     handleUpdate() {
         this.props.updateState()
+        
     }
     render() {
         let myNotes = this.props.myNotes;
@@ -65,7 +66,7 @@ export default class MyNotes extends React.Component {
                     spacing={2}
                     justify='space-between'
                 >
-                {myNotes.filter(notes => notes.created > this.props.date ).map((notes) => (
+                {myNotes.filter(notes => notes.pinned === this.props.pinned ).map((notes) => (
                     <Grid 
                         container
                         lg={4}
@@ -82,11 +83,7 @@ export default class MyNotes extends React.Component {
                                     <h3 className={notes.color === 'yellow' ? 'black' : 'white' }>
                                         {notes.title}
                                     </h3>
-                                    <img
-                                        
-                                        src={ pinWhite } 
-                                        className="pin-icon" 
-                                        alt="plus-minus"
+                                    <img src={ pinWhite } className="pin-icon" alt="plus-minus"
                                      />
                                 </div>
                                 <div className="notes-content">
