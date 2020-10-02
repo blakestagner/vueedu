@@ -64,6 +64,18 @@ class LandingMenu extends React.Component {
         }
     }
     render() {
+        window.onscroll = () => {
+            const nav = document.querySelector('#mainNav');
+
+            if(window.scrollY <= 10) {
+                nav.className = 'navBar'
+                this.setState({menuIcon: menuWhite})
+            }
+            else {
+                nav.className = 'navBar scrollBar';
+                this.setState({menuIcon: menuBlack})
+                }
+            }; 
         return (
             <div className="navBar" id="mainNav">
                 <MobileMenu onClick={this.mobileMenuToggle}/>
