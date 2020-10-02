@@ -1,5 +1,5 @@
 import axios from 'axios';
-const BASE_URL = 'https://api.dovoli.com';
+const BASE_URL = 'https://api.vueedu.com';
 //const BASE_URL = 'http://localhost:3101';
 
 
